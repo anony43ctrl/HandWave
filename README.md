@@ -2,28 +2,50 @@
 
 **Overview**
 
-This project involves the development of a robotic arm that is operated through hand gestures, utilizing the Robot Operating System (ROS) for control and coordination. By implementing computer vision techniques, the robotic arm responds to user hand movements without the need for physical touch, enhancing ease of interaction and usability. The system uses a camera to detect hand gestures and translates them into commands for the robotic arm, making it a highly intuitive and hands-free experience.
+This project enables you to control a robotic arm using hand gestures detected by a webcam. The system integrates OpenCV, MediaPipe, ROS, and an Arduino-controlled robotic arm. The hand gestures captured by the webcam (such as "left," "right," "up," "down," and "center") are interpreted and used to send control signals to the robotic arm, providing a touchless, intuitive user interface.
+
 
 **Features**
 
-Gesture-Based Control: Operates the robotic arm through hand gestures captured by a camera.
+Hand Gesture Recognition: Uses MediaPipe to detect and interpret hand gestures in real-time via webcam.
 
-ROS Integration: Leverages the Robot Operating System (ROS) for smooth coordination and control of the robotic arm.
+Robotic Arm Control: Uses ROS to communicate with a robotic arm controlled by an Arduino.
 
-Computer Vision: Implements real-time hand tracking and gesture recognition for accurate arm movements.
+Real-Time Feedback: The webcam feed displays visual feedback, including bounding boxes around detected hands and directional indicators.
 
-Touchless Interaction: Enhances user experience by eliminating the need for physical touch or manual input.
-
-Customizable Movements: Users can program various gestures to trigger specific movements or actions of the robotic arm.
+Arduino Integration: The robotic arm is controlled via Arduino and servo motors for smooth movement based on detected gestures.
 
 **Technologies Used**
 
-Robot Operating System (ROS): For robot control and communication.
+Hand Gesture Recognition: The webcam captures hand movements, and MediaPipe processes the video feed to detect hand landmarks. The system calculates the hand's relative position to the center of the screen to determine gestures such as "left," "right," "up," "down," and "center."
 
-OpenCV: For computer vision and hand gesture recognition.
+Arduino-Controlled Robotic Arm: The detected hand gestures are mapped to commands that control the robotic arm's movement. The Arduino receives these commands and adjusts the servo positions to move the robotic arm accordingly.
 
-TensorFlow/Keras: For training and implementing hand gesture recognition models (optional depending on the implementation).
+Real-Time Communication: The ROS framework is used to communicate between the gesture recognition system and the robotic arm, enabling seamless control in real time.
 
-Python: Programming language for system integration and logic.
+Visual Feedback: The system provides a colored bounding box around the hand, as well as directional text (e.g., "left," "right") for real-time feedback.
 
-Robot Arm Hardware: The robotic arm is equipped with servos and actuators, controlled through ROS commands.
+**Components**
+
+
+Webcam: Captures the hand gestures.
+
+Arduino: Controls the robotic arm's servos.
+
+Servos: Physical actuators that move the robotic arm.
+
+Computer: Runs the hand gesture recognition software using OpenCV and MediaPipe, and sends commands to the Arduino via ROS.
+
+**Arduino Code Overview**
+
+
+
+The Arduino code controls a robotic arm with three servos (base, shoulder, and elbow) based on commands received through ROS. The hand gesture system sends directional commands (e.g., "left," "right") to the Arduino, which moves the corresponding servos accordingly.
+
+Base Servo: Controls the arm’s base, allowing rotation.
+
+Shoulder Servo: Controls the arm’s shoulder joint.
+
+Elbow Servo: Controls the arm’s elbow joint.
+
+ROS Communication: The Arduino receives commands via ROS and moves the servos based on those commands.
